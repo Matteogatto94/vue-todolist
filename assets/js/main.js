@@ -14,8 +14,37 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            newTask: '',
+            error: false,
+            tasks: [
+                {text: 'Comprare un abito Gucci', done: false},
+                {text: 'Comprare un auto costosa', done: false}
+            ]
+        }
+    },
+    
+    methods: {
+        addTask() {
+            console.log('Ho cliccato su Add Task');
+            console.log(this.newTask);
+           
+
+            if (this.newTask.length < 5){
+                this.error = true
+
+            } else {
+                this.error = false
+                this.tasks.unshift(this.newTask);
+                this.newTask = '';
+            }
+        
             
+        },
+
+        done(index){
+            this.tasks.splice(index, 1)
         }
     }
-})
 
+
+}).mount('#app')

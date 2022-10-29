@@ -20,7 +20,22 @@
 <body>
     
     <div id="app">
-        
+        <div class="container">
+            <h1 class="my-4">Add a new Task</h1>
+            <input type="text" v-model="newTask.text" @keyup.enter="addTask">
+            <button @click="addTask">Add task</button>
+            <small class="text-danger" v-show="error">Devi inserire una task di almeno 5 caratteri</small>
+
+
+            <div class="task_list">
+                <h3 class="my-4">To do</h3>
+                
+                <ul v-if="tasks.length !==0">
+                    <li v-for="(task,index) in tasks">{{task.text}} <i class="fa-solid fa-xmark" v-on:click="done(index)"></i></li>
+                </ul>
+                <p v-else><i class="fa-solid fa-circle-check"></i> COMPLIMENTI, HAI COMPLETATO TUTTI GLI OBIETTIVI DI OGGI, VAI A RILASSARTI!</p>
+            </div>
+        </div>
     </div>
 
 
